@@ -5,21 +5,21 @@
 theme:            jekyll-theme-minimal
 
 # Setup
-title:            "Rakendustarkvara: R"
-tagline:          LTMS.00.016
+title:            "DeltaX"
+tagline:          Sissejuhatus R-i
 url:              http://rkursus.github.io/
 paginate:         1
-baseurl:          /sygis2019
+baseurl:          /deltax
 author:
   name:           Kaur Lumiste
   url:            
-  email:          kaur.lumiste@ut.ee, anne.selart@ut.ee
+  email:          kaur.lumiste@ut.ee
 
 # Custom vars
 version:          1.0.0
 github:
-  repo:           http://rkursus.github.io/sygis2019
+  repo:           http://rkursus.github.io/deltax
 
 pages_list:       
   Praktikumid: '/praktikumid'
-  Projektid: '/projektid'
+  
