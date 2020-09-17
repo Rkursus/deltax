@@ -12,11 +12,11 @@ opts_chunk$set(warning=FALSE, message=FALSE, fig.width=6, fig.height=4)
 
 # Mis on ggplot2?
 
-*ggplot2* on populaarne R-i pakett, mis võimaldab suhteliselt vähese vaevaga joonistada ilusaid graafikuid. Kuna joonised on üles ehitatud kiht kihi haaval, on tegu väga paindliku tööriistaga, sest ühel graafikul saab kombineerida erinevaid elemente. 
+*ggplot2* on populaarne R-i pakett, mis vÃµimaldab suhteliselt vÃ¤hese vaevaga joonistada ilusaid graafikuid. Kuna joonised on Ã¼les ehitatud kiht kihi haaval, on tegu vÃ¤ga paindliku tÃ¶Ã¶riistaga, sest Ã¼hel graafikul saab kombineerida erinevaid elemente. 
 
-Suurepärane ülevaate paketi võimalustest annab **ggplot2 dokumentatsioon** <http://docs.ggplot2.org/current/>. 
+SuurepÃ¤rane Ã¼levaate paketi vÃµimalustest annab **ggplot2 dokumentatsioon** <http://docs.ggplot2.org/current/>. 
 
-*ggplot2* autoriks on [Hadley Wickham](http://had.co.nz/). Pakett toetub nn graafikute grammatikale (***Grammar of Graphics***), mille avaldas Leland Wilkinson 2005. aastal. Selle grammatika eesmärk on kirjeldada, mida õieti kujutab endast üks graafik. Nii nagu tavakeeles defineerib grammatika sõnaliigid, mille kombineerimisel saame tekitada suvalisi lauseid, defineerib analoogiliselt graafikute grammatika sellised põhikomponendid, mille kombineerimisel on võimalik tekitada suvalisi graafikuid. Hadley on kirjutanud järgnevat:
+*ggplot2* autoriks on [Hadley Wickham](http://had.co.nz/). Pakett toetub nn graafikute grammatikale (***Grammar of Graphics***), mille avaldas Leland Wilkinson 2005. aastal. Selle grammatika eesmÃ¤rk on kirjeldada, mida Ãµieti kujutab endast Ã¼ks graafik. Nii nagu tavakeeles defineerib grammatika sÃµnaliigid, mille kombineerimisel saame tekitada suvalisi lauseid, defineerib analoogiliselt graafikute grammatika sellised pÃµhikomponendid, mille kombineerimisel on vÃµimalik tekitada suvalisi graafikuid. Hadley on kirjutanud jÃ¤rgnevat:
 
 > In brief, the grammar tells us that a statistical graphic is a mapping from data to aesthetic attributes (colour, shape, size) of geometric objects (points, lines, bars).
 
@@ -27,7 +27,7 @@ Suurepärane ülevaate paketi võimalustest annab **ggplot2 dokumentatsioon** <http
 library(ggplot2)
 ```
 
-Joonise tegemiseks tuleb alustada `ggplot` objekti konstrueerimisest. Üks võimalus on seda teha järgnevalt
+Joonise tegemiseks tuleb alustada `ggplot` objekti konstrueerimisest. Ãœks vÃµimalus on seda teha jÃ¤rgnevalt
 
 ```{r, eval=FALSE}
 install.packages('ggplot2')
@@ -38,15 +38,15 @@ ggplot(andmed, aes(x = tunnus1, y = tunnus2))
 
 kus esimese argumendina on ette antud andmestik ning teise argumendina *aesthetic mapping*. Seejuures `aes()` argumendid peavad olema ette antud andmestiku veergude nimed.
 
-Praeguseks hetkeks pole veel võimalik joonist vaadata, sest me pole joonisele ühtegi kihti lisanud (st me pole spetsifitseerinud, milliseid elemente sooviksime joonisel näha - antud *x, y* koordinaadid oleks võimalik tähistada nii punktidega, tulpadega, ühendada joontega jne). Näiteks punktide joonistamiseks peaksime lisama joonisele punktide kihi käsuga `geom_point()`.
+Praeguseks hetkeks pole veel vÃµimalik joonist vaadata, sest me pole joonisele Ã¼htegi kihti lisanud (st me pole spetsifitseerinud, milliseid elemente sooviksime joonisel nÃ¤ha - antud *x, y* koordinaadid oleks vÃµimalik tÃ¤histada nii punktidega, tulpadega, Ã¼hendada joontega jne). NÃ¤iteks punktide joonistamiseks peaksime lisama joonisele punktide kihi kÃ¤suga `geom_point()`.
 
-Järgnevalt tutvume *ggplot2* võimalustega näidete abil, mis põhinevad meditsiiniüliõpilaste andmestikul:
+JÃ¤rgnevalt tutvume *ggplot2* vÃµimalustega nÃ¤idete abil, mis pÃµhinevad meditsiiniÃ¼liÃµpilaste andmestikul:
 
 ```{r}
 # lae andmestik "students"
 load(url("https://github.com/Rkursus/deltax/raw/master/data/students.RData?raw=true"))
 
-# vaatame andmestiku päist
+# vaatame andmestiku pÃ¤ist
 head(students)
 ```
 
@@ -59,7 +59,7 @@ Hajuvusdiagrammi (*scatterplot*) tegemiseks
 ggplot(students, aes(x = height, y = weight)) + geom_point()
 ```
 
-millele saame ka värvi lisada `colour = tunnuse_nimi` (võime `colour` asemel kasutada ka `color` või `col`)
+millele saame ka vÃ¤rvi lisada `colour = tunnuse_nimi` (vÃµime `colour` asemel kasutada ka `color` vÃµi `col`)
 
 
 ```{r}
@@ -69,18 +69,18 @@ ggplot(students, aes(x = height, y = weight, colour = gender)) + geom_point()
 
 #### Mida teeb `aes()`?
 
-Funktsioon `aes()` (lühend sõnast _aesthetics_) koostab seosed tunnuste ja joonise dimensioonide vahel. Automaatselt otsitakse tunnuste nimesid juurde lisatud andmestikust. Pärast `aes` rakendamist (*with variables mapped into aesthetic space*) teab funktsioon `ggplot()`, et 
+Funktsioon `aes()` (lÃ¼hend sÃµnast _aesthetics_) koostab seosed tunnuste ja joonise dimensioonide vahel. Automaatselt otsitakse tunnuste nimesid juurde lisatud andmestikust. PÃ¤rast `aes` rakendamist (*with variables mapped into aesthetic space*) teab funktsioon `ggplot()`, et 
 
 * *x* koordinaadiks on *height*, 
 * *y* koordinaadiks on *weight*,
-* värvi näitab *gender*,
+* vÃ¤rvi nÃ¤itab *gender*,
 
 nagu me ise spetsifitseerisime. Saame anda ette tunnuseid veel dimensioonidele `shape`, `fill`, `linetype`, `weight` jpm.
 
 
 ## facet_grid() ja facet_wrap()
 
-Näiteks tunnuse `beer` põhjal saame oma joonise jagada alamjoonisteks (tahkudeks) järgnevalt
+NÃ¤iteks tunnuse `beer` pÃµhjal saame oma joonise jagada alamjoonisteks (tahkudeks) jÃ¤rgnevalt
 
 ```{r}
 ggplot(students, aes(x = height, y = weight, colour = gender)) + 
@@ -92,9 +92,9 @@ ggplot(students, aes(x = height, y = weight, colour = gender)) +
 
 ```{r}
 ggplot(students, aes(x = weight)) + geom_histogram()
-# Saame histogrammi tulpasid värvida soo järgi
+# Saame histogrammi tulpasid vÃ¤rvida soo jÃ¤rgi
 ggplot(students, aes(x = weight, fill=gender)) + geom_histogram()
-# Või jagada histogramm tahkudeks soo järgi, üksteise alla
+# VÃµi jagada histogramm tahkudeks soo jÃ¤rgi, Ã¼ksteise alla
 ggplot(students, aes(x = weight, fill=gender)) + geom_histogram() + 
   facet_wrap(~ gender, ncol=1)
 # Mitteparameetriline tiheduse hinnang
@@ -103,6 +103,8 @@ ggplot(students, aes(x = weight, fill=gender)) +
 ```
 
 ## geom_boxplot() ja geom_jitter()
+
+VÃ¤Ã¤rtuste hajuvusest ja jaotusest annavad aimu jÃ¤rgmised vÃµimalused:
 
 ```{r, eval=FALSE}
 ggplot(students, aes(x = beer, y = weight)) + geom_boxplot()
@@ -118,7 +120,7 @@ ggplot(students, aes(x = beer, y = weight)) +
 
 ## stat_smooth()
 
-Saame lisada näiteks regressioonisirge iga grupi jaoks
+Saame lisada nÃ¤iteks regressioonisirge iga grupi jaoks
 
 ```{r}
 ggplot(students, aes(x = height, y = weight, colour=gender)) + 
