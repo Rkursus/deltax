@@ -2,4 +2,4 @@
 layout: page
 ---
 
-{% include_relative /_basics/r_basics.html %}
+{% include_relative /_basics/basics.html %}
