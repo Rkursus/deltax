@@ -11,7 +11,8 @@ layout: frontpage
 
 R on statistikute, andmeteadlaste ja -analüütikute lemmik programmeerimiskeel ja -keskkond, mis on just arendatud statistiliseks andmetöötluseks aga võimaldab tänapäeval palju enamat. R-i kasutavate inimeste hulk on [viimasel ajal oluliselt kasvanud](http://r4stats.com/articles/popularity/) nii ülikoolides kui ka ettevõtetes. Eelkõige on populaarsuse põhjus vaba ligipääs, lai valik lisapakette ja kvaliteetsete jooniste tegemise võimalus. 
 
-R-i kodulehelt saab vajaliku tarkvara alla laadida: http://www.r-project.org/
+R-i kodulehelt saab vajaliku tarkvara alla laadida: http://www.r-project.org/.
+
 R-i mugavamaks kasutamiseks tasub kasutada [RStudiot](https://rstudio.com/), mille tasuta versioon rahuldab pea 99% tavakasutaja vajadustest.
 
 
@@ -29,6 +30,7 @@ R-i mugavamaks kasutamiseks tasub kasutada [RStudiot](https://rstudio.com/), mil
 # Asjume asja kallale
 
 * [R-i põhitõed](r_basics)
+	* [R kood](https://raw.githubusercontent.com/Rkursus/deltax/master/_basics/basics_code.R)
 * [Jooniste tegemine paketiga `ggplot`](ggplot)
 * [Lisamaterjali](lisamaterjal)
 

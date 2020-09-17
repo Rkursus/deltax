@@ -1,21 +1,12 @@
-# --------- I praktikum ---------
+# --------- Sissejuhatus R-i ---------
 
 
-# --- 1. Sissejuhatus ----
+# --- 1. Kasutajaliides ----
 
-# Palun loe praktikumimaterjalide tekst läbi.
 # Seadistame RStudio-t:
 ## Pane paika kodeerimine (ingl. k. encoding), et RStudio ka täpitähte (õäöü) tunnistaks.
 ## Tools -> Global Options -> Code -> Savings -> Default text encoding (vali "UTF-8" kui seal on midagi muud)
 ## 
-## Vaata, kas on õige R-i versioon RStudio 'kõhus'
-## 
-## Lisaks saab seadistada värve ja väljanägemist
-## Tools -> Global Options -> Appearence
-##
-
-
-# --- 1.1 Kasutajaliides ----
 
 # Tutvu RStudio kasutajaliidesega, kuhu kirjutada kood, kuhu ilmuvad vastused?
 # Kust saab ülevaate hetkel R-i mälus toimuvast?
@@ -33,9 +24,6 @@
 2 ^ 3 - 2 ** 3
 5 %% 3
 log(exp(1)) * cos(-pi) * sqrt(9) + factorial(4) - choose(4, 2) * min(4, 5, 2)
-1 / 0
-0/0  # NaN ehk Not a Number, määramatus
--Inf 
 
 ## --- ÜL 1.2.1 KMI arvutamine ----
 
@@ -55,9 +43,6 @@ log(8, base = 2)  # kui vaja leida logaritm alusel 2, peab argumendi 'base' vä�
 
 
 ?choose
-help(choose)
-
-??"logarithm"
 
 # NB!  R teeb vahet suurtel ja väiksetel tähtedel, proovi:
 Log(5)
@@ -65,20 +50,6 @@ log(5)
 
 log(8, BASE = 2)
 log(8, base = 2)
-
-
-# ---- ÜL 1.3.1 ----
-# 1 abi akna avamine
-
-
-# 2  aritmeetilised tehted, tehtesümboli kohta abi küsimuseks panna see jutumärkidesse
-?"*"
-
-# 3 siinuse leidmiseks funktsioon: sin
-
-
-
-
 
 
 
@@ -92,150 +63,79 @@ kaal # muutuja väärtuse vaatamine
 
 kaal/pikkus ^ 2  # muutujate kasutamine tehtes
 
-ls()  # millised muutujanimed on juba kasutusse võetud?
-
-rm(kaal, pikkus)  # eemaldame muuutujad kaal ja pikkus 
-ls()  # nüüd peaks töölaud tühi olema
 
 
+# --- 3. Lisapakettide kasutamine ----
+
+# Paigaldame lisapaketi ggplot2 ja talle vajalikud paketid:
+install.packages("ggplot2")
 
 
+# Igal uuel R-i sessioonil tuleb paketid sisse laadida käsuga library:
+library(ggplot2)
 
 
+# -------------------------------------
+# ----- Joonised paketiga ggplot2 ----
+# -------------------------------------
 
 
-# --- 2.2 Vektorid ----
-kaalud <- c(7, 3.5, 0.4, 2, 3.2, 20.2)
-liik <- c("koer", "kass", "rott", "kass", "kass", "koer")
+# lae andmestik "students"
+load(url("https://github.com/Rkursus/deltax/raw/master/data/students.RData?raw=true"))
+
+# vaatame andmestiku päist
+head(students)
+
+# Hajuvusdiagrammi (scatterplot) tegemiseks
+ggplot(students, aes(x = height, y = weight)) + 
+  geom_point()
 
 
-# vektori elemendid peavad olema sama tüüpi, arve ja teksti miksides saame tulemuseks tekstivektori
-c(987, -Inf, "tekst", kaalud)
+# Värvi saame lisada järgmiselt: colour = tunnuse_nimi
+ggplot(students, aes(x = height, y = weight, colour = gender)) + 
+  geom_point()
 
-kaalud*1000  # tehted vektoriga tehakse elemendiviisi
-c(987, -Inf, "tekst", kaalud)*3  #  aga tekstidega ei saa arvutusi teha
+# Uurime erinevaid jooniste võimalusi:
 
-
-
-# kindla mustriga vektorite moodustamine
-
-# jada täisarvudest sammuga 1, kasvav või kahanev
-1:5 
-20:15
-
-# Üldisem jada, ette anda algus ja lõpp ning samm või vektori pikkus
-seq(from = 2, to = 30, by = 2)
-seq(from = 20, to = 4, by = 0.2)
-seq(3, 40, length.out = 10)
-
-# korduvate elementidega jadad
-rep(x = 1:4, times = 3)
-rep(x = 1:4, each = 3)
-rep(x = 1:4, times = c(2, 1, 1, 5))
+# Funktsioonid facet_grid() ja facet_wrap()
+# Näiteks tunnuse 'beer' põhjal saame oma joonise jagada alamjoonisteks (tahkudeks) järgnevalt
+ggplot(students, aes(x = height, y = weight, colour = gender)) + 
+  geom_point() + 
+  facet_wrap(~ beer)
 
 
-# tehted tehakse elemendiviisi
-1:5 + c(3, 4, 5, 2, 6)
+# Histogramm ja jaotused
+# geom_histogram()
+ggplot(students, aes(x = weight)) + 
+  geom_histogram()
 
-# ettevaatust: lühemat vektorit 'taaskasutatakse'
-1:4 + 1:2
-1:4 + c(1:2, 1:2)
+# Saame histogrammi tulpasid värvida soo järgi
+ggplot(students, aes(x = weight, fill=gender)) + 
+  geom_histogram()
 
-# 'taaskasutus',  kui pikema vektori elementide arv ei ole lühema vektori elementide arvu täisarv kordne
-1:5 + 1:2
+# ... Või jagada histogramm tahkudeks soo järgi, üksteise alla
+ggplot(students, aes(x = weight, fill=gender)) + 
+  geom_histogram() + 
+  facet_wrap(~ gender, ncol=1)
 
-
-
-# elementide valik vektorist
-kaalud[1:3]           # esimesed 3 elementi vektorist
-kaalud[seq(1, 6, 2)]  # iga teine element alates esimesest
-(1:10)[-c(2, 4)]      # negatiivne indeks jätab vastavad vaatlused välja
-
-
-
+# Mitteparameetriline tiheduse hinnang
+ggplot(students, aes(x = weight, fill=gender)) + 
+  geom_density(alpha=0.5)
 
 
-# ---- Ül 2.2.1 ----
-# 1
-y <- rep(____)
-y
+# Funktsioonid geom_boxplot() ja geom_jitter()
+# Väärtuste hajuvusest ja jaotusest annavad aimu järgmised võimalused:
+ggplot(students, aes(x = beer, y = weight)) + geom_boxplot()
+ggplot(students, aes(x = beer, y = weight)) + geom_jitter()
 
-# 2
-z <- ____
-z
-y + z
-
-# 3 
-length(z) # mitu elementi on vektoris z? 
-z[___] 
-
-#4  Tehte järjekord! 
-u <- 8
-1:u - 1 
-1:(u - 1)
+# informatiivse joonise saame kahe eelneva kihi (boxploti ja punktide) kombineerimisel
+ggplot(students, aes(x = beer, y = weight)) + 
+  geom_boxplot() + 
+  geom_jitter()
 
 
- 
-
-
-
-
-# --- 2.3 Puuduvad väärtused ----
-vanused <- c(7,  , 3, 53, 53, 95) # veateade: vektorisse ei saa jätta täitmata kohta
-
-
-vanused <- c(7, NA, 3, 53, 53, 95) # puuduva väärtuse tähis NA
-vanused
-
-# kui tehtes tulevad mängu puuduvad väärtused on tulemuseks: puuduv väärtus
-123 + NA
-
-round(vanused/12, 1)
-
-
-# erinevatel funktsioonidel erinevad võimalused puuduvate väärtustega toimetulekuks
-mean(vanused)
-mean(vanused, na.rm = TRUE)
-
-table(vanused)
-table(vanused)
-table(vanused, useNA = "ifany")
-table(vanused, useNA = "always")
-table(liik, useNA = "always")
-
-summary(vanused)
-
-
-
-# ---- ÜL 2.3.1 ----
-#1 
-sum(____)
-
-
-#2 
-?which.min 
-
-
-# --- LISA: Kasutajaliidesest veel ---
-
-# Kas sul tekkis korraks küsimus, miks on kogu eelnev kood just nii kirjutatud?
-# Kuidas on kommentaarid kirjutatud? Miks on mõnede kommentaaride ridade ees ja järel '---'?
-# Proovi RStudios vajutada alla suunatud kolmnurka, mis on mõne kommentaarirea ees. Mis juhtus?
-# R script akna paremal üleval nurgas on üks nupp (näeb välja nagu sisukorra read), vajuta seda. Mida näed?
-
-# Veel mõned soovitused:
-
-# Tihedamini kasutatavad koodijupid tasuks seadistada 'snippet'-ks
-# Tools -> Global Options -> Code -> Editing -> Edit snippets
-#
-# Näide: Hakka script aknasse kirjutama 'shinyapp' ja vajuta Tab klahvi. Mis juhtus?
-#
-# Selekteeri alumised 3 rida ja vajuta Ctrl+Shift+A. Mis juhtus?
-if(!exists("x")){
-  x=c(3,5)
-  y=x[2]}
-
-
-
-
-
+# Funktsioon stat_smooth()
+# Saame lisada näiteks regressioonisirge iga grupi jaoks
+ggplot(students, aes(x = height, y = weight, colour=gender)) + 
+  geom_point() + 
+  stat_smooth(method="lm", se=FALSE)

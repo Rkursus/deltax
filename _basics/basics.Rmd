@@ -58,8 +58,6 @@ R-is on võimalik teha kõiki lihtsamaid aritmeetilisi tehteid, sealjuures järg
 - `5 %% 3` -- modulo (jääk jagamisel)
 - `log(exp(1)) * cos(-pi) * sqrt(9) + factorial(4) - choose(4, 2) * min(4, 5, 2)`   
    on sama, mis $\ln{(e^1)} \cdot \cos{(-\pi)} \cdot \sqrt{9} + 4! - \binom{4}{2} \cdot \min(4,5,2)$
-- `1/0` annab tulemuseks `Inf` (*infinity*)
-- `0/0` annab tulemuseks `NaN` (*not a number*)
 
 ### Ülesanded
 

@@ -44,7 +44,7 @@ Järgnevalt tutvume *ggplot2* võimalustega näidete abil, mis põhinevad medits
 
 ```{r}
 # lae andmestik "students"
-load(url("https://github.com/Rkursus/deltax/raw/master/data/students.RData?raw=true"))
+load(url("https://github.com/Rkursus/deltax/raw/master/data/students.RData"))
 
 # vaatame andmestiku päist
 head(students)
